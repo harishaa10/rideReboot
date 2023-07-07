@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {Provider} from 'react-redux';
+import store from './store';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import HomeScreen from './screens/HomeScreen';
+import RideScreen from './screens/RideScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import GetPassScreen from './screens/GetPassScreen';
+
 
 export default function App() {
+
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+    <NavigationContainer>
+    <SafeAreaProvider>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Ride" component={RideScreen} />
+        <Stack.Screen name="GetPass" component={GetPassScreen} />
+      </Stack.Navigator>    
+    </SafeAreaProvider>
+    </NavigationContainer>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+
