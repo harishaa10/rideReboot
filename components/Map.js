@@ -32,7 +32,7 @@ const Map = () => {
 
   return (
       <MapView
-          style={{flex: 1}}
+          style={{flex: 2}}
           mapType='mutedStandard'
           ref={mapRef}
           initialRegion={{

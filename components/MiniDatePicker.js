@@ -1,20 +1,27 @@
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from '@rneui/base';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const MiniDatePicker = () => {
 
     const [open, setOpen] = useState(false);
+    const [date, setDate] = useState(new Date());
 
-    function handleOnPress() {
-        setOpen(!open);
-    }
+    const onChange = (selectedDate) => {
+        const currentDate = selectedDate || date;
+        setOpen(false);
+        setDate(new Date(currentDate.nativeEvent.timestamp));
+    };
+
+    const showMode = () => {
+        setOpen(true);
+    };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <Button style={styles.Button} onPress={handleOnPress}>Choose Date</Button>
+      <TouchableOpacity style={styles.Button} >
+        <Button onPress={showMode}>Choose Date</Button>
       </TouchableOpacity>
 
       <Modal
@@ -22,11 +29,14 @@ const MiniDatePicker = () => {
         transparent={true}
         visible={open}
         >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText} onPress={handleOnPress}>Hello World!</Text>
-                </View>
-            </View>
+            <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={"date"}
+                onChange={onChange}
+                minimumDate={new Date()}
+                maximumDate={new Date(new Date().getTime() + (90*24*60*60*1000))}
+                />
         </Modal>
     </View>
   )
@@ -36,31 +46,11 @@ export default MiniDatePicker
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
+        flex: 0,
         padding: 10,
     },
     Button:{
-        backgroundColor: "black",
         padding: 10,
         margin: 10,
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "grey",
-        opacity: 0.5,
-        },
-    modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        },
-    modalText: {
-        marginBottom: 15,
-        textAlign: "center",
-        },
-
+    }
 })

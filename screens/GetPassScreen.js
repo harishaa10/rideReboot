@@ -1,30 +1,20 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MiniDatePicker from '../components/MiniDatePicker'
+import MiniSearch from '../components/MiniSearch'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import SetSchedule from './SetSchedule'
+import SetOccurenceScreen from './SetOccurenceScreen'
 
 const GetPassScreen = () => {
+
+  const Stack= createMaterialTopTabNavigator();
+
   return (
-    <SafeAreaView style={styles.container}>
-    <TextInput style= {styles.textInput} placeholder="To Where?" />
-    <TextInput style= {styles.textInput} placeholder="From Where?" />
-    <MiniDatePicker />
-    </SafeAreaView>
-  )
-}
+    <Stack.Navigator initialRouteName='Schedule-Based'>
+      <Stack.Screen name= "Schedule-Based" component={SetSchedule} />
+      <Stack.Screen name= "Occurence-Based" component={SetOccurenceScreen} />
+    </Stack.Navigator>)}
+  
 
 export default GetPassScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    textInput: {
-        height: 40,
-        margin: 12,
-        borderRadius:5,
-        padding: 10,
-        color: "white",
-        backgroundColor: "grey",
-    },
-})
