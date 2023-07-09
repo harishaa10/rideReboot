@@ -7,19 +7,19 @@ const actions = [
     {
         id: "HomeWork",
         title: "Home to Work",
-        image: "https://links.papareact.com/3pn",
+        image: "https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png",
         screen: "RideArriving"
     },
     {
         id: "WorkHome",
         title: "Work to Home",
-        image: "https://links.papareact.com/28w",
+        image: "https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png",
         screen: "RideArriving"
     },
     {
         id: "ScheduledRides",
         title: "Scheduled Rides",
-        image: "https://links.papareact.com/3pn",
+        image: "https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png",
         screen: "ScheduledRides"
     }
 ];

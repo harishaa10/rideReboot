@@ -7,20 +7,20 @@ const data = [
     {
         id: "home",
         title: "Home",
-        image: "https://links.papareact.com/3pn",
+        image: "https://i.imgur.com/ogd0Ilj.jpeg",
         screen: "QuickActions",
 
     },
     {
         id:"ride",
         title:"Book a Ride",
-        image: "https://links.papareact.com/3pn",
+        image: "https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png",
         screen: "Ride",
     },
     {
         id:"schedule",
         title:"Get RidePass",
-        image: "https://links.papareact.com/28w",
+        image: "https://i.imgur.com/lK9rnxG.jpeg",
         screen: "GetPass",
 
     }
