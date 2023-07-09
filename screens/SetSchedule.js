@@ -7,25 +7,63 @@ import MiniSwitch from '../components/MiniSwitch'
 import MiniTimePicker from '../components/MiniTimePicker'
 import MiniDayChooser from '../components/MiniDayChooser'
 import MiniDropDown from '../components/MiniDropDown'
-
+import { Divider } from '@rneui/base'
 
 const SetSchedule = () => {
   return (
     <SafeAreaView style={{flex:1}}>
-    <MiniSearch placeholdertext="From Where?" isOrigin={true}/>
-    <MiniSearch placeholdertext="To Where?" isOrigin={false} />
-    <MiniDatePicker />
+
+    <View style={{flexDirection:'row', alignItems:"center",paddingRight:10, paddingBottom:10, justifyContent:"flex-end"}}>
     <MiniSwitch />
+    </View>
+
+    <View style={{flexDirection:'row', alignItems:"center"}}>
+    <MiniSearch placeholdertext="From Where?" isOrigin={true} width={275}/>
     <MiniTimePicker />
-    <MiniDayChooser />
+    </View>
+
+    <View style={{flexDirection:'row', alignItems:"center"}}>
+    <MiniSearch placeholdertext="To Where?" isOrigin={false} width={275}/>
+    <MiniTimePicker />
+    </View>
+
+    <Divider />
+
+    <View style={{flexDirection:'row', alignItems:"center", padding:10, justifyContent:"space-between"}}>
+    <Text>Start Date</Text>
+    <MiniDatePicker />
+    </View>
+
+    <Divider />
+
+    <View>
+    <Text style={{margin:10}}>Repeats Every</Text>
     <View style={{flexDirection:'row'}}>
-    <TextInput style={{height:50, width:50, padding:10, borderWidth:1, margin:10, borderRadius:5}}
+    <TextInput style={{height:40, width:40, padding:10, borderWidth:1, borderColor:"grey", margin:10, borderRadius:5}}
                 keyboardType='numeric'
                 defaultValue='1'
                 maxLength={2}
                 />
     <MiniDropDown />
     </View>
+    </View>
+
+    <Divider />
+
+    <View>
+    <Text style={{margin:10}}>Repeats On</Text>
+    <MiniDayChooser />
+    </View>
+
+    <Divider />
+
+    <View style={{flexDirection:'row', alignItems:"center", padding:10, justifyContent:"space-between"}}>
+    <Text>End Date:</Text>
+    <MiniDatePicker />
+    </View>
+
+    <Divider />
+
     </SafeAreaView> 
   )
 }

@@ -20,7 +20,7 @@ const actions = [
         id: "ScheduledRides",
         title: "Scheduled Rides",
         image: "https://links.papareact.com/3pn",
-        screen: "ScheduleScreen"
+        screen: "ScheduledRides"
     }
 ];
 

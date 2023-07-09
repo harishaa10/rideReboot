@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Modal, TouchableOpacity } from 'react-native'
-import { Icon, Button} from '@rneui/base';
+import { Icon} from '@rneui/base';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 
@@ -22,10 +22,9 @@ const miniTimePicker = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.Button}>
-        <Button onPress={showMode}>
-        <Icon name="clock" type='feather' color={"white"}/>
-        </Button>
+      <TouchableOpacity style={styles.Button} onPress={showMode}>
+        <Icon name="clock" type='feather' color={"black"}/>
+        <Text style={{marginLeft:5}}>{time.getHours()}:{time.getMinutes()}</Text>
       </TouchableOpacity>
 
       <Modal
@@ -50,10 +49,16 @@ export default miniTimePicker
 const styles = StyleSheet.create({
     container:{
         flex: 0,
-        padding: 10,
+        margin: 10,
+        paddingBottom:5
     },
     Button:{
-        height: 50,
-        width: 50
+        height: 45,
+        width: 80,
+        borderRadius: 5,
+        flexDirection: "row",
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
     }
 })

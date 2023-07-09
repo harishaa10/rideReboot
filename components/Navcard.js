@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     item:{
-        backgroundColor: 'grey',
+        backgroundColor: 'white',
         padding: 10,
         height: 75,
         width: 110,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end"
     },
     text:{
-        color: 'white',
+        color: 'grey',
         fontWeight: 'semibold',
     }
 })

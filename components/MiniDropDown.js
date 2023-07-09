@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         margin: 10,
-        height: 50,
+        height: 40,
         width: 100,
-        borderBottomColor: 'gray',
+        borderBottomColor: 'grey',
         borderBottomWidth: 0.5,
       },
       placeholderStyle: {

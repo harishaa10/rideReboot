@@ -6,7 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GetPassScreen from './screens/GetPassScreen';
-
+import ScheduledRidesScreen from './screens/ScheduledRidesScreen';
 
 export default function App() {
 
@@ -19,7 +19,8 @@ export default function App() {
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="GetPass" component={GetPassScreen} />
-      </Stack.Navigator>    
+        <Stack.Screen name="ScheduledRides" component={ScheduledRidesScreen} />
+      </Stack.Navigator>   
     </SafeAreaProvider>
     </NavigationContainer>
     </Provider>

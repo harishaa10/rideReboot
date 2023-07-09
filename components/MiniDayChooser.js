@@ -48,10 +48,9 @@ const styles = StyleSheet.create({
         padding: 10,
         },
     CheckMark:{
-        padding: 10,
         margin: 5,
-        height: 40,
-        width: 40,
+        height: 30,
+        width: 30,
         borderRadius:50,
         justifyContent:"center",
         alignItems:"center",

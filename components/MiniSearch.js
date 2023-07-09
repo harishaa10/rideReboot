@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice';
 import { Icon } from '@rneui/base';
 
-const MiniSearch = ({placeholdertext, isOrigin}) => {
+const MiniSearch = ({placeholdertext, isOrigin, width=null}) => {
 
     const dispatch = useDispatch();
 
@@ -26,6 +26,11 @@ const MiniSearch = ({placeholdertext, isOrigin}) => {
         styles={{
             container:{
                 flex: 0,
+                width: width? width: "95%",
+            },
+            textInput:{
+              height: 45,
+              paddingTop:5
             }
         }
         }

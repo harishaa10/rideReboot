@@ -11,12 +11,12 @@ const HomeScreen = ({navigation}) => {
   const Stack= createNativeStackNavigator();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor:"#262729"}}>
         <Map />
         <Navcard navigation={navigation}/>
         <Stack.Navigator>
-          <Stack.Screen name="Ride" component={RideScreen} options={{headerShown: false}}/>
-          <Stack.Screen name="QuickActions" component={QuickActions} options={{headerShown: false}}/>
+          <Stack.Screen name="Ride" component={RideScreen} options={{headerShown: false, animation:"fade"}}/>
+          <Stack.Screen name="QuickActions" component={QuickActions} options={{headerShown: false, animation:"fade"}}/>
         </Stack.Navigator>
       </SafeAreaView>
   )

@@ -3,19 +3,19 @@ import React, {useState}from 'react'
 
 const MiniSwitch = () => {
 
-    const [isEnabled, setIsEnabled] = useState("one-way");
+    const [isEnabled, setIsEnabled] = useState("two-way");
     const toggleSwitch = mode => setIsEnabled(mode);
 
 
   return (
     <View>
 
-        <View style={{flexDirection:"row", borderRadius:25, height:54, width:204, backgroundColor:"white", justifyContent:"center", alignItems:"center"}}>
+        <View style={{flexDirection:"row", borderRadius:25, height:24, width:164, backgroundColor:"white", justifyContent:"center", alignItems:"center"}}>
 
             <TouchableOpacity 
                 onPress={()=>toggleSwitch("one-way")}
                 style={[styles.TouchableOpacity,
-                    {backgroundColor: isEnabled=="one-way" ? "green" : "white"}]}
+                    {backgroundColor: isEnabled=="one-way" ? "grey" : "white"}]}
                 >
                     <Text>One- Way</Text>
             </TouchableOpacity>
@@ -23,7 +23,7 @@ const MiniSwitch = () => {
             <TouchableOpacity 
             onPress={()=>toggleSwitch("two-way")}
             style={[styles.TouchableOpacity,
-                    {backgroundColor: isEnabled=="two-way" ? "green" : "white"}]}
+                    {backgroundColor: isEnabled=="two-way" ? "grey" : "white"}]}
             >
                 <Text>Two- Way</Text>
             </TouchableOpacity>
@@ -38,11 +38,10 @@ export default MiniSwitch
 
 const styles = StyleSheet.create({
     TouchableOpacity:{
-        height:50,
-        width:100,
+        height:20,
+        width:80,
         borderRadius:25,
         justifyContent:"center",
-        alignItems:"center",
-        padding:10,
-    }
+        alignItems:"center"
+        }
 })

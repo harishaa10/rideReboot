@@ -1,17 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View, Text} from 'react-native'
 import React from 'react'
 import MiniSearch from '../components/MiniSearch'
-import { Button, Icon } from '@rneui/base';
 import { TextInput } from 'react-native';
 
 const RideScreen = ({navigation}) => {
 
   return (
-    <View style={{flex:0}}>
-          <MiniSearch placeholdertext="From Where?" isOrigin={true}/>
-          <MiniSearch placeholdertext="To Where?" isOrigin={false} />        
+    <View style={{flex:0, paddingTop: 10}}>
+    <View style={{padding:5}}>
+    <MiniSearch placeholdertext="From Where?" isOrigin={true}/>
+    </View>
+
+    <View style={{padding:5}}>
+    <MiniSearch placeholdertext="To Where?" isOrigin={false} />        
+    </View>
+          
       <TextInput style={styles.textInput} placeholder="Where to?" />
-      <Button style={styles.container} onPress={() => navigation.navigate("GetPass")}>Book a Ride</Button>
+      <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("ScheduledRides")}>
+        <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Book a Ride</Text>
+      </TouchableOpacity>
       </View>
   )
 }
@@ -29,7 +36,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     height: 44,
     borderRadius:5,
-    margin:10,
+    marginBottom:10,
+    marginHorizontal:20,
+    padding: 10,
+  },
+  TouchableOpacity:{
+    backgroundColor: 'black',
+    flex:0,
+    borderRadius:5,
     padding: 10,
   }
 })

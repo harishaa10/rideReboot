@@ -1,12 +1,18 @@
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { Button } from '@rneui/base';
+import { Button, Icon } from '@rneui/base';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const MiniDatePicker = () => {
 
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState(new Date());
+
+    const dateOptions = {
+      weekday: 'short',
+      month: 'long',
+      day: 'numeric',
+    };
 
     const onChange = (selectedDate) => {
         const currentDate = selectedDate || date;
@@ -20,8 +26,9 @@ const MiniDatePicker = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.Button} >
-        <Button onPress={showMode}>Choose Date</Button>
+      <TouchableOpacity style={styles.Button} onPress={showMode}>
+      <Icon name="calendar" type='feather' color={"black"}/>
+        <Text style={{marginLeft:10}}>{date.toLocaleDateString('en-US', dateOptions)}</Text>
       </TouchableOpacity>
 
       <Modal
@@ -47,10 +54,19 @@ export default MiniDatePicker
 const styles = StyleSheet.create({
     container:{
         flex: 0,
-        padding: 10,
+        marginHorizontal: 5,
+        marginVertical: 0,
     },
     Button:{
-        padding: 10,
-        margin: 10,
+      flex:0,
+      paddingHorizontal:10,
+      paddingVertical:5,
+      height: 45,
+      width:200,
+      borderRadius: 5,
+      flexDirection: "row",
+      backgroundColor: "white",
+      justifyContent: "center",
+      alignItems: "center",
     }
 })

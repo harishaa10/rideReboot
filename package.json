@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "6.7.3",
+    "@react-native-community/geolocation": "^3.0.6",
     "@react-navigation/material-top-tabs": "^6.6.3",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
@@ -21,6 +22,7 @@
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-calendars": "^1.1299.0",
     "react-native-element-dropdown": "^2.9.0",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-google-places-autocomplete": "^2.5.1",
