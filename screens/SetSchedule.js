@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import MiniDatePicker from '../components/MiniDatePicker'
 import MiniSearch from '../components/MiniSearch'
@@ -8,8 +8,14 @@ import MiniTimePicker from '../components/MiniTimePicker'
 import MiniDayChooser from '../components/MiniDayChooser'
 import MiniDropDown from '../components/MiniDropDown'
 import { Divider } from '@rneui/base'
+import { useSelector } from 'react-redux'
+import {useState} from 'react'
 
-const SetSchedule = () => {
+const SetSchedule = ({navigation}) => {
+
+  const travelTime= useSelector((state) => state.nav.travelTimeInformation);
+  const [numrides, setNumrides] = useState(1);
+
   return (
     <SafeAreaView style={{flex:1}}>
 
@@ -43,6 +49,7 @@ const SetSchedule = () => {
                 keyboardType='numeric'
                 defaultValue='1'
                 maxLength={2}
+                onChangeText={(text) => setNumrides(text)}
                 />
     <MiniDropDown />
     </View>
@@ -64,10 +71,28 @@ const SetSchedule = () => {
 
     <Divider />
 
+    <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("Home")}>
+        <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Schedule Rides {travelTime && "for " +
+          new Intl.NumberFormat("en-gb",{
+            style: "currency",
+            currency: "GBP"}).format(
+              travelTime.value*0.005*numrides
+            )}
+        </Text>
+      </TouchableOpacity>
+
     </SafeAreaView> 
   )
 }
 
 export default SetSchedule
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  TouchableOpacity:{
+    marginTop: 100,
+    backgroundColor: 'black',
+    flex:0,
+    borderRadius:5,
+    padding: 10
+  }
+})

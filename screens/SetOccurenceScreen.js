@@ -1,14 +1,27 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native'
 import React from 'react'
 import MiniDatePicker from '../components/MiniDatePicker'
 import MiniSearch from '../components/MiniSearch'
 import MiniTimePicker from '../components/MiniTimePicker'
 import { Divider } from '@rneui/base'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useSelector } from 'react-redux'
+import {useState} from 'react'
+import MiniSwitch from '../components/MiniSwitch'
+
+
 
 const SetOccurenceScreen = () => {
+
+  const travelTime= useSelector((state) => state.nav.travelTimeInformation);
+  const [numrides, setNumrides] = useState(1);
+
   return (
     <SafeAreaView style={{flex:1}}>
+
+    <View style={{flexDirection:'row', alignItems:"center",paddingRight:10, paddingBottom:10, justifyContent:"flex-end"}}>
+    <MiniSwitch />
+    </View>
 
     <View style={{flexDirection:'row', alignItems:"center"}}>
     <MiniSearch placeholdertext="From Where?" isOrigin={true} width={275}/>
@@ -33,6 +46,7 @@ const SetOccurenceScreen = () => {
                 keyboardType='numeric'
                 defaultValue='1'
                 maxLength={2}
+                onChangeText={(text) => setNumrides(text)}
                 />
     </View>
 
@@ -43,6 +57,16 @@ const SetOccurenceScreen = () => {
 
     <Divider />
 
+    <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("Home")}>
+        <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Schedule Rides {travelTime && "for "+
+          new Intl.NumberFormat("en-gb",{
+            style: "currency",
+            currency: "GBP"}).format(
+              travelTime.value*0.005*numrides
+            )}
+        </Text>
+      </TouchableOpacity>
+
 
     </SafeAreaView> 
   )
@@ -50,4 +74,12 @@ const SetOccurenceScreen = () => {
 
 export default SetOccurenceScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  TouchableOpacity:{
+    marginTop: 250,
+    backgroundColor: 'black',
+    flex:0,
+    borderRadius:5,
+    padding: 10
+  }
+})

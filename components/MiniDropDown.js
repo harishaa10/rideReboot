@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React , {useState}from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
-import { Icon } from '@rneui/base';
 
 const data = [
     { label: 'Day', value: 'option1' },
@@ -9,7 +8,7 @@ const data = [
 
 const MiniDropDown = () => {
 
-    const [value, setValue] = useState("option1");
+    const [value, setValue] = useState("option2");
 
   return (
     <Dropdown

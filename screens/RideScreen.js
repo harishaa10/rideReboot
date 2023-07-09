@@ -1,9 +1,11 @@
 import { StyleSheet, TouchableOpacity, View, Text} from 'react-native'
 import React from 'react'
 import MiniSearch from '../components/MiniSearch'
-import { TextInput } from 'react-native';
+import {useSelector} from 'react-redux'
 
 const RideScreen = ({navigation}) => {
+
+  const travelTime= useSelector((state) => state.nav.travelTimeInformation);
 
   return (
     <View style={{flex:0, paddingTop: 10}}>
@@ -15,9 +17,15 @@ const RideScreen = ({navigation}) => {
     <MiniSearch placeholdertext="To Where?" isOrigin={false} />        
     </View>
           
-      <TextInput style={styles.textInput} placeholder="Where to?" />
+      <Text style={styles.textInput}>{travelTime?"Travel Time: "+travelTime.text:"Choose"}</Text>
       <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("ScheduledRides")}>
-        <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Book a Ride</Text>
+        <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Book a Ride {travelTime && "for "+
+          new Intl.NumberFormat("en-gb",{
+            style: "currency",
+            currency: "GBP"}).format(
+              travelTime.value*0.005
+            )}
+        </Text>
       </TouchableOpacity>
       </View>
   )
@@ -33,12 +41,14 @@ const styles = StyleSheet.create({
       padding:10,
   },
   textInput: {
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
+    fontWeight: "semibold",
     height: 44,
     borderRadius:5,
     marginBottom:10,
     marginHorizontal:20,
     padding: 10,
+    textAlign: 'center',
   },
   TouchableOpacity:{
     backgroundColor: 'black',

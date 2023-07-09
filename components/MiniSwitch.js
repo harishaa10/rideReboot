@@ -15,17 +15,17 @@ const MiniSwitch = () => {
             <TouchableOpacity 
                 onPress={()=>toggleSwitch("one-way")}
                 style={[styles.TouchableOpacity,
-                    {backgroundColor: isEnabled=="one-way" ? "grey" : "white"}]}
+                    {backgroundColor: isEnabled=="one-way" ? "black" : "white"}]}
                 >
-                    <Text>One- Way</Text>
+                    <Text style={{color: isEnabled=="one-way" ? "white" : "black", fontWeight:"thin"}}>One- Way</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
             onPress={()=>toggleSwitch("two-way")}
             style={[styles.TouchableOpacity,
-                    {backgroundColor: isEnabled=="two-way" ? "grey" : "white"}]}
+                    {backgroundColor: isEnabled=="two-way" ? "black" : "white"}]}
             >
-                <Text>Two- Way</Text>
+                <Text style={{color: isEnabled=="two-way" ? "white" : "black", fontWeight:"thin"}}>Two- Way</Text>
             </TouchableOpacity>
 
         </View>

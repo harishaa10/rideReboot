@@ -8,13 +8,13 @@ const actions = [
         id: "HomeWork",
         title: "Home to Work",
         image: "https://links.papareact.com/3pn",
-        screen: "RideArrivingScreen"
+        screen: "RideArriving"
     },
     {
         id: "WorkHome",
         title: "Work to Home",
         image: "https://links.papareact.com/28w",
-        screen: "RideArrivingScreen"
+        screen: "RideArriving"
     },
     {
         id: "ScheduledRides",
@@ -24,11 +24,11 @@ const actions = [
     }
 ];
 
-const QuickActions = () => {
+const QuickActions = ({navigation}) => {
     return (
         <View style={styles.container}>
         <FlatList horizontal data={actions} renderItem={({item}) => (
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.item} onPress={()=>navigation.navigate(item.screen)}>
                 <Image style={{height:40, width:40, resizeMode:"contain"}} source={{uri:item.image}} />
                 <Text style={styles.text}>{item.title}</Text>
             </TouchableOpacity>
