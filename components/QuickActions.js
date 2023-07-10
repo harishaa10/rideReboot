@@ -20,7 +20,7 @@ const actions = [
         id: "ScheduledRides",
         title: "Scheduled Rides",
         image: "https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png",
-        screen: "ScheduledRides"
+        screen: "Scheduled Rides"
     }
 ];
 

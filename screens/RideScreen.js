@@ -18,7 +18,7 @@ const RideScreen = ({navigation}) => {
     </View>
           
       <Text style={styles.textInput}>{travelTime?"Travel Time: "+travelTime.text:"Choose"}</Text>
-      <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("ScheduledRides")}>
+      <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("RideArriving")}>
         <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Book a Ride {travelTime && "for "+
           new Intl.NumberFormat("en-gb",{
             style: "currency",

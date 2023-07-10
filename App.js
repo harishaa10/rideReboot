@@ -19,7 +19,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="GetPass" component={GetPassScreen} />
-        <Stack.Screen name="ScheduledRides" component={ScheduledRidesScreen} />
+        <Stack.Screen name="Scheduled Rides" component={ScheduledRidesScreen} />
       </Stack.Navigator>   
     </SafeAreaProvider>
     </NavigationContainer>

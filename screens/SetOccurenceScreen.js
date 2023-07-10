@@ -8,13 +8,17 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSelector } from 'react-redux'
 import {useState} from 'react'
 import MiniSwitch from '../components/MiniSwitch'
+import { useDispatch } from 'react-redux'
+import { setRidePass } from '../slices/navSlice'
 
 
 
-const SetOccurenceScreen = () => {
+const SetOccurenceScreen = ({navigation}) => {
 
   const travelTime= useSelector((state) => state.nav.travelTimeInformation);
   const [numrides, setNumrides] = useState(1);
+
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={{flex:1}}>
@@ -24,13 +28,11 @@ const SetOccurenceScreen = () => {
     </View>
 
     <View style={{flexDirection:'row', alignItems:"center"}}>
-    <MiniSearch placeholdertext="From Where?" isOrigin={true} width={275}/>
-    <MiniTimePicker />
+    <MiniSearch placeholdertext="From Where?" isOrigin={true} width={350}/>
     </View>
 
     <View style={{flexDirection:'row', alignItems:"center"}}>
-    <MiniSearch placeholdertext="To Where?" isOrigin={false} width={275}/>
-    <MiniTimePicker />
+    <MiniSearch placeholdertext="To Where?" isOrigin={false} width={350}/>
     </View>
 
     <Divider />
@@ -57,7 +59,10 @@ const SetOccurenceScreen = () => {
 
     <Divider />
 
-    <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("Home")}>
+    <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
+      dispatch(setRidePass(true));
+      navigation.navigate("QuickActions");
+      }}>
         <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Schedule Rides {travelTime && "for "+
           new Intl.NumberFormat("en-gb",{
             style: "currency",
@@ -76,7 +81,7 @@ export default SetOccurenceScreen
 
 const styles = StyleSheet.create({
   TouchableOpacity:{
-    marginTop: 250,
+    marginTop: 300,
     backgroundColor: 'black',
     flex:0,
     borderRadius:5,
