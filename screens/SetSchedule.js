@@ -14,30 +14,50 @@ import {useState} from 'react'
 const SetSchedule = ({navigation}) => {
 
   const travelTime= useSelector((state) => state.nav.travelTimeInformation);
+
+  const [isEnabled, setIsEnabled] = useState("two-way");
+ 
+  const [l1Time, setL1Time] = useState(new Date());
+  const [l2Time, setL2Time] = useState(new Date());
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
   const [numrides, setNumrides] = useState(1);
+  const [repeatsEvery, setRepeatsEvery] = useState("");
+  const [selectedDays, setSelectedDays] = useState({
+    Monday: false,
+    Tuesday: false,
+    Wednesday: false,
+    Thursday: false,
+    Friday: false,
+    Saturday: false,
+    Sunday: false,
+});
+
 
   return (
     <SafeAreaView style={{flex:1}}>
 
     <View style={{flexDirection:'row', alignItems:"center",paddingRight:10, paddingBottom:10, justifyContent:"flex-end"}}>
-    <MiniSwitch />
+    <MiniSwitch isEnabled={isEnabled} setIsEnabled={setIsEnabled}/>
     </View>
 
     <View style={{flexDirection:'row', alignItems:"center"}}>
     <MiniSearch placeholdertext="From Where?" isOrigin={true} width={275}/>
-    <MiniTimePicker />
+    <MiniTimePicker time={l1Time} setTime={setL1Time} disable={false}/>
     </View>
 
     <View style={{flexDirection:'row', alignItems:"center"}}>
     <MiniSearch placeholdertext="To Where?" isOrigin={false} width={275}/>
-    <MiniTimePicker />
+    <MiniTimePicker time={l2Time} setTime={setL2Time} disable= {isEnabled==="one-way"? true:false} />
     </View>
 
     <Divider />
 
     <View style={{flexDirection:'row', alignItems:"center", padding:10, justifyContent:"space-between"}}>
     <Text>Start Date</Text>
-    <MiniDatePicker />
+    <MiniDatePicker date={startDate} setDate={setStartDate} />
     </View>
 
     <Divider />
@@ -51,22 +71,24 @@ const SetSchedule = ({navigation}) => {
                 maxLength={2}
                 onChangeText={(text) => setNumrides(text)}
                 />
-    <MiniDropDown />
+    <MiniDropDown value={repeatsEvery} setValue={setRepeatsEvery} />
     </View>
     </View>
 
     <Divider />
 
-    <View>
-    <Text style={{margin:10}}>Repeats On</Text>
-    <MiniDayChooser />
-    </View>
+    { repeatsEvery==="Week" && (
+        <View>
+        <Text style={{margin:10}}>Repeats On</Text>
+        <MiniDayChooser selectedDays={selectedDays} setSelectedDays={setSelectedDays}/>
+        </View>
+    )}
 
     <Divider />
 
     <View style={{flexDirection:'row', alignItems:"center", padding:10, justifyContent:"space-between"}}>
     <Text>End Date:</Text>
-    <MiniDatePicker />
+    <MiniDatePicker date={endDate} setDate={setEndDate} />
     </View>
 
     <Divider />
@@ -89,7 +111,9 @@ export default SetSchedule
 
 const styles = StyleSheet.create({
   TouchableOpacity:{
-    marginTop: 100,
+    position: 'absolute',
+    bottom: 0,
+    width: "100%",
     backgroundColor: 'black',
     flex:0,
     borderRadius:5,

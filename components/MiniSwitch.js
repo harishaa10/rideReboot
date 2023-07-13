@@ -1,9 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, {useState}from 'react'
+import React from 'react'
 
-const MiniSwitch = () => {
+const MiniSwitch = ({isEnabled,setIsEnabled}) => {
 
-    const [isEnabled, setIsEnabled] = useState("two-way");
     const toggleSwitch = mode => setIsEnabled(mode);
 
 

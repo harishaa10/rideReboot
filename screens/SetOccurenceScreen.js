@@ -16,7 +16,10 @@ import { setRidePass } from '../slices/navSlice'
 const SetOccurenceScreen = ({navigation}) => {
 
   const travelTime= useSelector((state) => state.nav.travelTimeInformation);
+  const [isEnabled, setIsEnabled] = useState("two-way");
   const [numrides, setNumrides] = useState(1);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const dispatch = useDispatch();
 
@@ -24,7 +27,7 @@ const SetOccurenceScreen = ({navigation}) => {
     <SafeAreaView style={{flex:1}}>
 
     <View style={{flexDirection:'row', alignItems:"center",paddingRight:10, paddingBottom:10, justifyContent:"flex-end"}}>
-    <MiniSwitch />
+    <MiniSwitch isEnabled={isEnabled} setIsEnabled={setIsEnabled}/>
     </View>
 
     <View style={{flexDirection:'row', alignItems:"center"}}>
@@ -39,7 +42,7 @@ const SetOccurenceScreen = ({navigation}) => {
 
     <View style={{flexDirection:'row', alignItems:"center", padding:10, justifyContent:"space-between"}}>
     <Text>Start Date</Text>
-    <MiniDatePicker />
+    <MiniDatePicker date={startDate} setDate={setStartDate} />
     </View>
 
     <View style={{flexDirection:'row', justifyContent:"space-between", alignItems:"center"}}>
@@ -54,7 +57,7 @@ const SetOccurenceScreen = ({navigation}) => {
 
     <View style={{flexDirection:'row', alignItems:"center", padding:10, justifyContent:"space-between"}}>
     <Text>End Date</Text>
-    <MiniDatePicker />
+    <MiniDatePicker date={endDate} setDate={setEndDate}/>
     </View>
 
     <Divider />

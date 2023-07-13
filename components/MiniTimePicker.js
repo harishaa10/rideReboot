@@ -5,10 +5,9 @@ import { Icon} from '@rneui/base';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 
-const miniTimePicker = () => {
+const miniTimePicker = ({time, setTime, disable}) => {
 
     const [open, setOpen] = useState(false);
-    const [time, setTime] = useState(new Date());
 
     const onChange = (selectedTime) => {
         const currentTime = selectedTime || time;
@@ -22,7 +21,7 @@ const miniTimePicker = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.Button} onPress={showMode}>
+      <TouchableOpacity style={styles.Button} onPress={showMode} disabled={disable}>
         <Icon name="clock" type='feather' color={"black"}/>
         <Text style={{marginLeft:5}}>{time.getHours()}:{time.getMinutes()}</Text>
       </TouchableOpacity>

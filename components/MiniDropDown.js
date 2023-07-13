@@ -1,14 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React , {useState}from 'react'
+import React from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
 
 const data = [
-    { label: 'Day', value: 'option1' },
-    { label: 'Week', value: 'option2' }];
+    { label: 'Day', value: 'Day' },
+    { label: 'Week', value: 'Week' }];
 
-const MiniDropDown = () => {
-
-    const [value, setValue] = useState("option2");
+const MiniDropDown = ({value, setValue}) => {
 
   return (
     <Dropdown

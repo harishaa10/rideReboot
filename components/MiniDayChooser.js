@@ -1,17 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, {useState} from 'react'
 
-const MiniDayChooser = () => {
+const MiniDayChooser = ({selectedDays,setSelectedDays}) => {
 
-    const [selectedDays, setSelectedDays] = useState({
-        Monday: false,
-        Tuesday: false,
-        Wednesday: false,
-        Thursday: false,
-        Friday: false,
-        Saturday: false,
-        Sunday: false,
-    });
+
 
     const handlePress = (day) => {
         setSelectedDays({...selectedDays,[day]: !selectedDays[day]});

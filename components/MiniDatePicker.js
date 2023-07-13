@@ -1,13 +1,12 @@
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { Button, Icon } from '@rneui/base';
+import { Icon } from '@rneui/base';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const MiniDatePicker = () => {
+const MiniDatePicker = ({date, setDate}) => {
 
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState(new Date());
-
+    
     const dateOptions = {
       weekday: 'short',
       month: 'long',
