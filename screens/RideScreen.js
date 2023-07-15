@@ -8,7 +8,8 @@ const RideScreen = ({navigation}) => {
   const travelTime= useSelector((state) => state.nav.travelTimeInformation);
 
   return (
-    <View style={{flex:0, paddingTop: 10}}>
+    <View style={{flex:1, paddingTop: 10}}>
+
     <View style={{padding:5}}>
     <MiniSearch placeholdertext="From Where?" isOrigin={true}/>
     </View>
@@ -18,6 +19,7 @@ const RideScreen = ({navigation}) => {
     </View>
           
       <Text style={styles.textInput}>{travelTime?"Travel Time: "+travelTime.text:"Choose"}</Text>
+
       <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("RideArriving")}>
         <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Book a Ride {travelTime && "for "+
           new Intl.NumberFormat("en-gb",{
@@ -34,12 +36,6 @@ const RideScreen = ({navigation}) => {
 export default RideScreen
 
 const styles = StyleSheet.create({
-  container:{
-      flex: 0,
-      alignItems: 'flex-start',
-      justifyContent: 'flex-start',
-      padding:10,
-  },
   textInput: {
     backgroundColor: 'white',
     fontWeight: "semibold",
@@ -55,5 +51,9 @@ const styles = StyleSheet.create({
     flex:0,
     borderRadius:5,
     padding: 10,
+    position: 'relative',
+    bottom: 0,
+    width: "100%",
+    height: "40%"
   }
 })

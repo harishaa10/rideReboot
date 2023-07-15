@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1008262866641",
+    "project_id": "incode-ridereboot",
+    "storage_bucket": "incode-ridereboot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008262866641:android:04124ad5e7d1bdc1de87f0",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008262866641-vp2equoi4uqau2dc62mg4393p3u8v2jf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmg6kKipNMQLgf1ponr_871oXwBl2ZR_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008262866641-vp2equoi4uqau2dc62mg4393p3u8v2jf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

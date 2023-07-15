@@ -10,6 +10,8 @@ import MiniDropDown from '../components/MiniDropDown'
 import { Divider } from '@rneui/base'
 import { useSelector } from 'react-redux'
 import {useState} from 'react'
+import calcweekdates from '../helper/calcweekdates'
+import calcdaydates from '../helper/calcdaydates'
 
 const SetSchedule = ({navigation}) => {
 
@@ -26,13 +28,13 @@ const SetSchedule = ({navigation}) => {
   const [numrides, setNumrides] = useState(1);
   const [repeatsEvery, setRepeatsEvery] = useState("");
   const [selectedDays, setSelectedDays] = useState({
-    Monday: false,
-    Tuesday: false,
-    Wednesday: false,
-    Thursday: false,
-    Friday: false,
-    Saturday: false,
-    Sunday: false,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    0: false,
 });
 
 
@@ -116,7 +118,6 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: 'black',
     flex:0,
-    borderRadius:5,
     padding: 10
   }
 })
