@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import {GOOGLE_MAPS_API_KEY} from '@env';
@@ -16,7 +16,6 @@ const MiniSearch = ({placeholdertext, isOrigin, width=null}) => {
             location: details.geometry.location,
             description: data.description
             }));
-            console.log(details.geometry.location);
     }
 
   return (
@@ -36,6 +35,7 @@ const MiniSearch = ({placeholdertext, isOrigin, width=null}) => {
         }
         placeholder={placeholdertext}
         fetchDetails={true}
+        autoFocus={true}
         minLength	={3}
         debounce={400}
         renderLeftButton={() => {

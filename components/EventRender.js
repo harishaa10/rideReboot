@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const EventRender = ({ date }) => {
+const EventRender = ({ date, dets }) => {
   const dateOptions = {
     weekday: 'long',
     month: 'long',
@@ -14,10 +14,10 @@ const EventRender = ({ date }) => {
       <Text style={styles.textDate}>{new Date(date).toLocaleDateString('en-US', dateOptions)}</Text>
 
       <View style={styles.eventContainer}>
-        <Text style={styles.textTime}>10:00 AM</Text>
+        <Text style={styles.textTime}>{dets.l1Time.slice(0,5)}</Text>
 
         <View style={styles.eventDetails}>
-          <Text style={styles.textTitle}>SNR to VIT Chennai</Text>
+          <Text style={styles.textTitle}>{dets.from.split(",")[0] + " to " + dets.to.split(",")[0]}</Text>
           <View style={{flexDirection:"row"}}>
 
             <TouchableOpacity style={[styles.button, styles.buttonReschedule]}>

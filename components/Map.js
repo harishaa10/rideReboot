@@ -1,4 +1,4 @@
-import React, { useEffect, useRef }  from 'react'
+import React, { useRef }  from 'react'
 import MapView, {Marker} from 'react-native-maps'
 import mapstyle from '../helper/mapstyle.json'
 import {useDispatch, useSelector} from 'react-redux'
@@ -28,13 +28,11 @@ const Map = () => {
         prevDestination=destination;
         
           const getTravelTime = async () => {
-            const depttime=new Date().toISOString();
             fetch(
               `https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&departure_time=now&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_API_KEY}`
             )
               .then((res) => res.json())
               .then((data) => {
-                console.log(data.rows[0].elements[0]);
                 const timeData= data.rows[0].elements[0].duration_in_traffic.text>data.rows[0].elements[0].duration.text?data.rows[0].elements[0].duration_in_traffic:data.rows[0].elements[0].duration;
                 dispatch(setTravelTimeInformation(timeData));
               });

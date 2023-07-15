@@ -28,7 +28,7 @@ const data = [
 
 const Navcard = ({navigation}) => {
 
-    const hasRidePass = useSelector(state => state.nav.hasRidePass);
+    const hasRidePass = useSelector(state => state.schedule.hasSchedule);
 
   return (
     <View style={styles.container}>

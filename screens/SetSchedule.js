@@ -10,11 +10,18 @@ import MiniDropDown from '../components/MiniDropDown'
 import { Divider } from '@rneui/base'
 import { useSelector } from 'react-redux'
 import {useState} from 'react'
+import { useDispatch } from 'react-redux'
+import { setSchedule, setHasSchedule } from '../slices/scheduleSlice'
 import calcweekdates from '../helper/calcweekdates'
 import calcdaydates from '../helper/calcdaydates'
 
+
+
 const SetSchedule = ({navigation}) => {
 
+  const dispatch = useDispatch();
+  const origin= useSelector((state) => state.nav.origin);
+  const destination= useSelector((state) => state.nav.destination);
   const travelTime= useSelector((state) => state.nav.travelTimeInformation);
 
   const [isEnabled, setIsEnabled] = useState("two-way");
@@ -37,6 +44,38 @@ const SetSchedule = ({navigation}) => {
     0: false,
 });
 
+function getDates(){
+  if (repeatsEvery=== "") return false;
+  if (repeatsEvery==="Week" && !(Object.values(selectedDays).includes(true))) return false;
+  if (!origin && !destination) return false;
+  if (repeatsEvery==="Week"){
+    const weekdates = calcweekdates(startDate, endDate, selectedDays);
+    return weekdates;
+  }
+  if (repeatsEvery==="Day"){
+    const daydates = calcdaydates(startDate, endDate, numrides);
+    return daydates;
+  }
+}
+
+function jsonBuilder(dates){
+    var formData = {
+      type:"schedule",
+      from:origin.description,
+      to: destination.description,
+      isEnabled: isEnabled,
+      l1Time: l1Time.toLocaleTimeString(),
+      l2Time: isEnabled==="one-way"? null : l2Time.toLocaleTimeString(),
+      startDate: startDate.toISOString().slice(0,10),
+      endDate: endDate.toISOString().slice(0,10),
+      numrides: dates.length,
+      repeatsEvery: repeatsEvery,
+      selectedDays: selectedDays,
+      dates: dates, 
+      //cost: travelTime.value*0.005*numrides
+    };
+    return formData;
+}
 
   return (
     <SafeAreaView style={{flex:1}}>
@@ -69,7 +108,7 @@ const SetSchedule = ({navigation}) => {
     <View style={{flexDirection:'row'}}>
     <TextInput style={{height:40, width:40, padding:10, borderWidth:1, borderColor:"grey", margin:10, borderRadius:5}}
                 keyboardType='numeric'
-                defaultValue='1'
+                defaultValue="1"
                 maxLength={2}
                 onChangeText={(text) => setNumrides(text)}
                 />
@@ -95,12 +134,19 @@ const SetSchedule = ({navigation}) => {
 
     <Divider />
 
-    <TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate("Home")}>
+    <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
+      const dates = getDates();
+      if (dates===false) return false;
+      else{
+        dispatch(setSchedule(jsonBuilder(dates)));
+        dispatch(setHasSchedule(true));
+      navigation.navigate("QuickActions");
+      }}}>
         <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Schedule Rides {travelTime && "for " +
           new Intl.NumberFormat("en-gb",{
             style: "currency",
             currency: "GBP"}).format(
-              travelTime.value*0.005*numrides
+              travelTime.value*0.005*getDates().length
             )}
         </Text>
       </TouchableOpacity>

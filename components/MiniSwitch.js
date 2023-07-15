@@ -12,7 +12,7 @@ const MiniSwitch = ({isEnabled,setIsEnabled}) => {
         <View style={{flexDirection:"row", borderRadius:25, height:24, width:164, backgroundColor:"white", justifyContent:"center", alignItems:"center"}}>
 
             <TouchableOpacity 
-                onPress={()=>toggleSwitch("one-way")}
+                onPress={()=>{toggleSwitch("one-way")}}
                 style={[styles.TouchableOpacity,
                     {backgroundColor: isEnabled=="one-way" ? "black" : "white"}]}
                 >

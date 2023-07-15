@@ -7,7 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GetPassScreen from './screens/GetPassScreen';
 import ScheduledRidesScreen from './screens/ScheduledRidesScreen';
-import AuthScreen from './screens/AuthScreen';
 
 export default function App() {
 
@@ -18,7 +17,6 @@ export default function App() {
     <NavigationContainer>
     <SafeAreaProvider>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Auth" component={AuthScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="GetPass" component={GetPassScreen} />
         <Stack.Screen name="Scheduled Rides" component={ScheduledRidesScreen} />

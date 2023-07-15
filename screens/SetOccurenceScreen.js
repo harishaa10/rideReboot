@@ -2,26 +2,40 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native
 import React from 'react'
 import MiniDatePicker from '../components/MiniDatePicker'
 import MiniSearch from '../components/MiniSearch'
-import MiniTimePicker from '../components/MiniTimePicker'
 import { Divider } from '@rneui/base'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useSelector } from 'react-redux'
 import {useState} from 'react'
 import MiniSwitch from '../components/MiniSwitch'
-import { useDispatch } from 'react-redux'
-import { setRidePass } from '../slices/navSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSchedule, setHasSchedule } from '../slices/scheduleSlice'
 
 
 
 const SetOccurenceScreen = ({navigation}) => {
 
   const travelTime= useSelector((state) => state.nav.travelTimeInformation);
+  const origin= useSelector((state) => state.nav.origin);
+  const destination= useSelector((state) => state.nav.destination);
   const [isEnabled, setIsEnabled] = useState("two-way");
   const [numrides, setNumrides] = useState(1);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
   const dispatch = useDispatch();
+
+  function jsonBuilder(){
+    var formData = {
+      type:"occurence",
+      from:origin.description,
+      to: destination.description,
+      isEnabled: isEnabled,
+      startDate: startDate.toISOString().slice(0,10),
+      endDate: endDate.toISOString().slice(0,10),
+      numrides: numrides,
+      //cost: travelTime.value*0.005*numrides
+    };
+    return formData;
+}
 
   return (
     <SafeAreaView style={{flex:1}}>
@@ -63,7 +77,9 @@ const SetOccurenceScreen = ({navigation}) => {
     <Divider />
 
     <TouchableOpacity style={styles.TouchableOpacity} onPress={() => {
-      dispatch(setRidePass(true));
+      console.log(jsonBuilder());
+      dispatch(setSchedule(jsonBuilder()));
+      dispatch(setHasSchedule(true));
       navigation.navigate("QuickActions");
       }}>
         <Text style={{color: 'white', textAlign: 'center', padding: 10}}>Schedule Rides {travelTime && "for "+

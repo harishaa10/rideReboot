@@ -4,7 +4,6 @@ const initialState = {
     origin:null,
     destination:null,
     travelTimeInformation:null,
-    hasRidePass: false,
 };
 
 export const navSlice = createSlice({
@@ -20,12 +19,14 @@ export const navSlice = createSlice({
         setTravelTimeInformation: (state, action)=>{
             state.travelTimeInformation = action.payload;
         },
-        setRidePass: (state, action)=>{
-            state.hasRidePass = action.payload;
+        clearNav: (state)=>{
+            state.origin = null;
+            state.destination = null;
+            state.travelTimeInformation = null;
         }
     },
 });
 
-export const {setOrigin, setDestination, setTravelTimeInformation, setRidePass} = navSlice.actions;
+export const {setOrigin, setDestination, setTravelTimeInformation, clearNav} = navSlice.actions;
 
 export default navSlice.reducer;

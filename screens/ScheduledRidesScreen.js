@@ -1,11 +1,21 @@
-import { StyleSheet, View} from 'react-native'
+import { View} from 'react-native'
 import React, {useState} from 'react'
 import { Calendar } from 'react-native-calendars'
 import EventRender from '../components/EventRender'
+import { useSelector } from 'react-redux'
 
 const ScheduledRidesScreen = () => {
 
     const [selected, setSelected] = useState(new Date().toISOString().split('T')[0])
+    const schedule= useSelector(state => state.schedule.schedule);
+    var dates= {};
+
+    if( schedule.type==="schedule"){
+        schedule.dates.forEach((date)=>{
+            dates[date]={marked: true, dotColor: "purple"}
+        })
+    }
+
 
   return (
     <View style={{flex:1}}>
@@ -23,11 +33,14 @@ const ScheduledRidesScreen = () => {
             selectedColor: 'grey',
             marked: true
         },
-        '2023-07-15': {marked: true, dotColor: 'red', activeOpacity: 0},
+        ...dates
     }}
     />
     <View style={{flex:1, borderTopLeftRadius:25, borderTopRightRadius:25}}>
-    <EventRender date={selected}/>
+    { selected in dates && (
+        <EventRender date={selected} dets={schedule}/>
+    )
+    }
     </View>
     </View>
     )
